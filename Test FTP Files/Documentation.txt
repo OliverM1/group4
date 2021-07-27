@@ -1,0 +1,6 @@
+ftpclient will download everything located in /ftp/FTP to /temp
+BUT only if ftpserver.ps1 is run
+	located in /ftp
+	before running make sure you have run:
+		pip install pyftpdlib
+	this is the required python package to run the ftp server
