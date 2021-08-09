@@ -4,10 +4,14 @@
 #prints INVALID FILE if not
 
 import csv
+from extract_filename import extract_filename as extract
 
-def datachecker(file):
-    
-    with open(file, 'rU') as data:
+
+def datachecker(*, file_path):
+
+    filename = extract(file_path=file_path)
+
+    with open(file_path, 'rU') as data:
         reader = csv.reader(data)
         row = list(reader)
 
@@ -24,12 +28,14 @@ def datachecker(file):
                     try:
                         z = float(y)
                     except:
-                       print("INVALID FILE")
-                       brokenout = True 
+                        with open("log.txt", "at") as log:
+                            log.write(filename + " has invalid entries\n")
+                        brokenout = True
 
                     #checks if to 3dp and less than or equal to 9.9
                     if round(z, 3) != z or z>9.9:
-                        print("INVALID FILE")
+                        with open("log.txt", "at") as log:
+                            log.write(filename + " has invalid entries\n")
                         brokenout = True
 
                 #breaks inner loop
@@ -44,4 +50,4 @@ def datachecker(file):
 
 
                   
-datachecker('MED_DATA_20210701153942.csv')
+#datachecker('MED_DATA_20210701153942.csv')
