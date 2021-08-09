@@ -1,5 +1,7 @@
 import datetime
 import re
+from extract_filename import extract_filename
+
 
 FILENAME_PATTERN = re.compile("^MED_DATA_[0-9]{14}\\.csv$")
 DATE_PATTERN = re.compile("[0-9]{14}")
@@ -7,13 +9,7 @@ DATE_FORMAT = [4, 2, 2, 2, 2, 2]  # YYYYMMDDHHMMSS
 MIN_DATE = datetime.datetime(1970, 1, 1)  # date of earliest valid file
 
 
-# This will get the filename, which will then be checked by
-# is_valid_filename()
-def get_filename():
-    pass
-
-
-def is_valid_filename(filename: str) -> bool:
+def is_valid_filename(*, file_path: str) -> bool:
     """Checks the filename of a data file.
 
     Filenames should use the following naming convention:
@@ -21,11 +17,12 @@ def is_valid_filename(filename: str) -> bool:
 
     Returns True if the filename is valid, False otherwise."""
 
-    is_valid = True
+    filename = extract_filename(file_path=file_path)
+    is_invalid = False
     current_date = datetime.datetime.now()
 
     if not FILENAME_PATTERN.match(filename):
-        is_valid = False
+        is_invalid = True
 
     else:
         # Extract timestamp portion of filename
@@ -48,16 +45,22 @@ def is_valid_filename(filename: str) -> bool:
             # Reject files with dates in the future or from before the
             # first data were collected
             if not (MIN_DATE <= file_date <= current_date):
-                is_valid = False
+                is_invalid = True
 
         except ValueError:
-            is_valid = False
+            is_invalid = True
 
-    return is_valid
+    if is_invalid:
+        with open("log.txt", "at") as log:
+            log.write(filename + " has an invalid filename\n")
+    return is_invalid
 
 
 # For testing
+# Commented out while not needed
+"""
 if __name__ == "__main__":
     while True:
         name = input("Enter filename to check: ")
         print(is_valid_filename(name))
+"""
