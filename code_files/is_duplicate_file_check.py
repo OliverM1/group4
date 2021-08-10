@@ -1,7 +1,7 @@
 # Checking file name to see whether the file has already been stored (Assumes filename already checked)
 
 import pickle
-from extract_filename import extract_filename
+import os
 
 
 def is_duplicate_file(*, file_path):
@@ -15,7 +15,7 @@ def is_duplicate_file(*, file_path):
     pickle_file.close()
 
     # Returns true if name is duplicate or false otherwise
-    filename = extract_filename(file_path=file_path)
+    filename = os.path.basename(file_path)
     if filename in name_list:
         with open("log.txt", "at") as log:
             log.write(filename + " is a duplicate\n")

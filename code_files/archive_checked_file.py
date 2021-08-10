@@ -2,12 +2,11 @@
 # then archives away validated file in the correct date folder (creating the folder if necessary)
 
 import shutil
-from extract_filename import extract_filename
 import os
 
 
 def archive_file(*, file_path):
-    filename = extract_filename(file_path=file_path)
+    filename = os.path.basename(file_path)
 
     # Extracts date to use in archive file name
     date_and_time = filename.split(".")[0].split("_")[-1]

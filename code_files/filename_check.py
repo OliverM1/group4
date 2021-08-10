@@ -1,7 +1,6 @@
 import datetime
 import re
-from extract_filename import extract_filename
-
+import os
 
 FILENAME_PATTERN = re.compile("^MED_DATA_[0-9]{14}\\.csv$")
 DATE_PATTERN = re.compile("[0-9]{14}")
@@ -17,7 +16,7 @@ def is_valid_filename(*, file_path: str) -> bool:
 
     Returns True if the filename is valid, False otherwise."""
 
-    filename = extract_filename(file_path=file_path)
+    filename = os.path.basename(file_path)
     is_invalid = False
     current_date = datetime.datetime.now()
 

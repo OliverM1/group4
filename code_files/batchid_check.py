@@ -3,12 +3,12 @@
 # Will write to log if this is the case
 
 from csv_reader import fileToCSV
-from extract_filename import extract_filename as extract
+import os
 
 
 def batchIDCheck(*, file_path):
     csvFile = fileToCSV(file_path=file_path)
-    filename = extract(file_path=file_path)
+    filename = os.path.basename(file_path)
     ids = []
     for row in csvFile:
         ids.append(row["batch_id"])
