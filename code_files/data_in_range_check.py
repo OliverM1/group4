@@ -28,13 +28,13 @@ def datachecker(*, file_path):
                         z = float(y)
                     except:
                         with open("log.txt", "at") as log:
-                            log.write(filename + " has invalid entries1\n")
+                            log.write(filename + " has invalid entries\n")
                         return True
 
                     # Checks if to 3dp and less than or equal to 9.9
-                    if round(z, 3) != z or z > 9.999:
+                    if round(z, 3) != z or z > 9.9 or z < 0:
                         with open("log.txt", "at") as log:
-                            log.write(filename + " has invalid entries2\n")
+                            log.write(filename + " has invalid entries\n")
                         return True
 
                 count +=1

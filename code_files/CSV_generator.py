@@ -32,7 +32,7 @@ def correct_csv(year, month, day, start, num):
             for n in range(0, 10):
                 row = [batch_ids[n], "00:00:00"]
                 for m in range(0, 10):
-                    row.append(round(ran.random()*10, 3))
+                    row.append(round(ran.randint(0, 9900)/1000, 3))
                 mywriter.writerow(row)
 
 
@@ -53,7 +53,7 @@ def misspelled_header_csv(year, month, day, start, num):
             for n in range(0, 10):
                 row = [batch_ids[n], "00:00:00"]
                 for m in range(0, 10):
-                    row.append(round(ran.random() * 10, 3))
+                    row.append(round(ran.randint(0, 9900)/1000, 3))
                 mywriter.writerow(row)
 
 def missing_header_csv(year, month, day, start, num):
@@ -73,7 +73,7 @@ def missing_header_csv(year, month, day, start, num):
             for n in range(0, 10):
                 row = [batch_ids[n], "00:00:00"]
                 for m in range(0, 10):
-                    row.append(round(ran.random() * 10, 3))
+                    row.append(round(ran.randint(0, 9900)/1000, 3))
                 mywriter.writerow(row)
 
 
@@ -94,7 +94,7 @@ def missing_column_csv(year, month, day, start, num):
             for n in range(0, 10):
                 row = [batch_ids[n], "00:00:00"]
                 for m in range(0, 10):
-                    row.append(round(ran.random() * 10, 3))
+                    row.append(round(ran.randint(0, 9900)/1000, 3))
 
                 del row[error_id]
                 mywriter.writerow(row)
@@ -121,7 +121,7 @@ def invalid_entry_csv(year, month, day, start, num):
                 else:
                     row = [batch_ids[n], "00:00:00"]
                     for m in range(0, 10):
-                        row.append(round(ran.random() * 10, 3))
+                        row.append(round(ran.randint(0, 9900)/1000, 3))
                     if n == error_column - 2:
                         row[error_column] += 10
 
@@ -154,7 +154,7 @@ def duplicate_batch_id_csv(year, month, day, start, num):
                     row[0] = dup_id
 
                 for m in range(0, 10):
-                    row.append(round(ran.random() * 10, 3))
+                    row.append(round(ran.randint(0, 9900)/1000, 3))
 
                 mywriter.writerow(row)
 
@@ -175,7 +175,7 @@ def incorrect_filename_csv(year, month, day, start, num):
             for n in range(0, 10):
                 row = [batch_ids[n], "00:00:00"]
                 for m in range(0, 10):
-                    row.append(round(ran.random() * 10, 3))
+                    row.append(round(ran.randint(0, 9900)/1000, 3))
 
                 mywriter.writerow(row)
 
