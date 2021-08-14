@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk, filedialog
 import re
 
+from windows.basic_window import BasicWindow
 import config
 
 # TODO: If the user types a directory that does not exist, the program
@@ -17,20 +18,12 @@ IP_PATTERN = re.compile((
 INCOMPLETE_IP_PATTERN = re.compile("^[0-9.]*$")
 
 
-class OptionsWindow(Toplevel):
+class OptionsWindow(BasicWindow):
     """A window for selecting the default directory to save files, and
     configuring the FTP server details."""
 
     def __init__(self, parent):
-        super().__init__(parent)
-
-        # Set up the window
-        self.title("Options")
-        self.resizable(FALSE, FALSE)
-
-        # Frame to hold all widgets
-        self.frm_contents = ttk.Frame(self)
-        self.frm_contents.grid(row=0, column=0, sticky=NSEW)
+        super().__init__(parent, title="Options")
 
         # Frame for option to set the default directory
         self.frm_directory = ttk.Labelframe(self.frm_contents, text="General")

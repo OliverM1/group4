@@ -2,27 +2,21 @@ from tkinter import *
 from tkinter import ttk, font, messagebox
 from PIL import Image, ImageTk
 
+from windows.basic_window import BasicWindow
 from windows.options_window import OptionsWindow
+from windows.download_window import DownloadWindow
 
 
-class MainWindow(Toplevel):
+class MainWindow(BasicWindow):
     """The window that is displayed when the application is opened,
     containing buttons to access various functions."""
 
     def __init__(self, parent, icon):
-        super().__init__(parent)
+        super().__init__(parent, title="Download Medical Data")
 
         # Closing the main window should close the application, so it
         # must destroy the (hidden) root window
         self.protocol("WM_DELETE_WINDOW", parent.destroy)
-
-        # Set up the window
-        self.title("Download Medical Data")
-        self.resizable(FALSE, FALSE)
-
-        # Frame to hold all widgets
-        self.frm_contents = ttk.Frame(self)
-        self.frm_contents.grid(row=0, column=0, sticky=NSEW)
 
         # Label with a logo and title
         title_font = font.Font(family="TkDefaultFont", size=30, weight="bold")
@@ -65,7 +59,9 @@ class MainWindow(Toplevel):
         window_options.focus_force()
 
     def open_download_window(self):  # TODO
-        messagebox.showinfo(message="Download")
+        window_download = DownloadWindow(self.master)
+        window_download.lift()  # Show above main window
+        window_download.focus_force()
 
     def open_date_select_window(self):  # TODO
         messagebox.showinfo(message="Select dates")
