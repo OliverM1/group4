@@ -16,8 +16,11 @@ def load_options():
     """Loads the options from the config file and returns them as a
     dict."""
 
-    with open("config.json", "r") as config_file:
-        options = json.load(config_file)
+    try:
+        with open("config.json", "r") as config_file:
+            options = json.load(config_file)
+    except FileNotFoundError:
+        options = initialise_file()
 
     return options
 
@@ -31,6 +34,8 @@ def initialise_file():
         "ftp_port": "21",
     }
     save_options(default_options)
+
+    return default_options
 
 
 # This file can be run to reset to the default options
