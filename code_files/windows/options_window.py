@@ -5,9 +5,6 @@ import re
 from windows.basic_window import BasicWindow
 import config
 
-# TODO: If the user types a directory that does not exist, the program
-#  should ask if they want to create it before starting any downloads
-
 # IP address regex, copied from:
 # https://www.oreilly.com/library/view/regular-expressions-cookbook/9780596802837/ch07s16.html
 IP_PATTERN = re.compile((
@@ -34,11 +31,12 @@ class OptionsWindow(BasicWindow):
                                        text="Save files in this directory:")
         self.lbl_directory.grid(row=0, column=0, padx=5, pady=5, sticky=W)
 
-        # TODO: add validation to the directory entry
         # Entry for the directory
+        # Can only be changed using the select directory dialog
         self.default_directory = StringVar()
         self.ent_directory = ttk.Entry(self.frm_directory, width=40,
-                                       textvariable=self.default_directory)
+                                       textvariable=self.default_directory,
+                                       state="readonly")
         self.ent_directory.grid(row=1, column=0, padx=5, pady=5)
 
         # Button to open a dialog to choose a directory
@@ -99,8 +97,7 @@ class OptionsWindow(BasicWindow):
 
         # Frame for OK and cancel buttons
         self.frm_buttons = ttk.Frame(self.frm_contents)
-        self.frm_buttons.grid(row=2, column=0, columnspan=2, padx=5, pady=5,
-                              sticky=E)
+        self.frm_buttons.grid(row=2, column=0, padx=5, pady=5, sticky=E)
 
         # Cancel button: close the window without saving anything
         self.btn_cancel = ttk.Button(self.frm_buttons, text="Cancel",
