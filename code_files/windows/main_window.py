@@ -1,10 +1,11 @@
 from tkinter import *
-from tkinter import ttk, font, messagebox
+from tkinter import ttk, font
 from PIL import Image, ImageTk
 
 from windows.basic_window import BasicWindow
 from windows.options_window import OptionsWindow
 from windows.download_window import DownloadWindow
+from windows.date_select_window import DateSelectWindow
 
 
 class MainWindow(BasicWindow):
@@ -52,19 +53,28 @@ class MainWindow(BasicWindow):
             btn.grid(row=idx, column=0, sticky=EW, pady=5)
 
     def open_options_window(self):
+        """Opens the options window which takes focus from the main
+        window."""
+
         window_options = OptionsWindow(self.master)
-        window_options.lift()  # Show above main window
-        # TODO: block the user from interacting with the main window
-        #   while the options window is open
-        window_options.focus_force()
+        window_options.lift()
+        window_options.grab_set()
 
-    def open_download_window(self):  # TODO
+    def open_download_window(self):
+        """Opens the download window which takes focus from the main
+        window."""
+
         window_download = DownloadWindow(self.master)
-        window_download.lift()  # Show above main window
-        window_download.focus_force()
+        window_download.lift()
+        window_download.grab_set()
 
-    def open_date_select_window(self):  # TODO
-        messagebox.showinfo(message="Select dates")
+    def open_date_select_window(self):
+        """Opens the date selection window which takes focus from the
+        main window."""
+
+        window_date_select = DateSelectWindow(self.master)
+        window_date_select.lift()
+        window_date_select.grab_set()
 
 
 # For testing just this window
