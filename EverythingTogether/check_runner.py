@@ -6,9 +6,9 @@ from filename_check import is_valid_filename
 from is_duplicate_file_check import is_duplicate_file
 from is_empty_file_check import is_empty
 from batchid_check import batchIDCheck
-from archive_checked_file import archive_file
 from column_headers_check import column_header_check
 
+from archive_checked_file import archive_file
 
 def run_checks():
 
