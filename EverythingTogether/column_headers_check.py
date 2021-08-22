@@ -13,7 +13,6 @@ def column_header_check(*, file_path):
             column_names.append(row)
             break
 
-    # Not sure why I need two [ but seems to work
     if column_names != [["batch_id", "timestamp", "reading1", "reading2", "reading3", "reading4", "reading5", "reading6", "reading7", "reading8", "reading9", "reading10"]]:
         with open("log.txt", "at") as log:
             log.write(filename + " has a missing column\n")
