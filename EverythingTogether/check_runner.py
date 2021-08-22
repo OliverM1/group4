@@ -7,7 +7,7 @@ from is_duplicate_file_check import is_duplicate_file
 from is_empty_file_check import is_empty
 from batchid_check import batchIDCheck
 from archive_checked_file import archive_file
-
+from column_headers_check import column_header_check
 
 
 def run_checks():
@@ -23,8 +23,9 @@ def run_checks():
         duplicate = is_duplicate_file(file_path=path)
         empty = is_empty(file_path=path)
         id = batchIDCheck(file_path=path)
+        header = column_header_check(file_path=path)
 
-        if col or data or name or duplicate or empty or id:
+        if col or data or name or duplicate or empty or id or header:
             pass
         else:
             

@@ -1,12 +1,11 @@
 # Checks column headers against given list and gives error message if format incorrect
 
 import csv
-from extract_filename import extract_filename
-
+import os
 
 # Need to edit to fit in with other functions (and needs to be turned into a function)
 def column_header_check(*, file_path):
-    filename = extract_filename(file_path=file_path)
+    filename = os.path.basename(file_path=file_path)
     with open(file_path) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=",")
         column_names = []
