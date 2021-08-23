@@ -1,6 +1,6 @@
 Project standards:
 
 All checks return True if they detect a problem and False if they don't (True = Bad, False = Good)
-All filenames are in camel case
+All filenames are in snake case
 The names of the files carrying out checks all end with "check"
 All checks take the file as input, which has to be named explicity (file_path = "......")
